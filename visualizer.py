@@ -15,8 +15,8 @@ def getColor(weight):
 class Visualizer:
     
     @staticmethod
-    def draw(nn, scale = 3):
-        statedict=  nn.state_dict()
+    def draw(nnstatedict, scale = 3):
+        statedict=  nnstatedict
         architecture = []
         weights = []
         biases = []
@@ -27,9 +27,6 @@ class Visualizer:
             else:
                 biases.append(statedict[key].numpy().tolist())
         
-
-
-
         nnDepth = len(architecture)
         maxNeuronsPerLayer = max(architecture)
 
@@ -95,5 +92,5 @@ if __name__ == "__main__":
 
     while cv2.waitKey(10) != ord('q'):
         neuralnet = Net()
-        visualizer = Visualizer.draw(neuralnet, scale = 2)
+        visualizer = Visualizer.draw(neuralnet.state_dict(), scale = 2)
         cv2.imshow('NN', visualizer)
