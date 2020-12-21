@@ -23,9 +23,9 @@ class Visualizer:
         for key in statedict.keys():    
             if "bias" not in key:
                 architecture.append(statedict[key].size()[1])
-                weights.append(statedict[key].numpy().tolist())
+                weights.append(statedict[key].cpu().numpy().tolist())
             else:
-                biases.append(statedict[key].numpy().tolist())
+                biases.append(statedict[key].cpu().numpy().tolist())
         
         nnDepth = len(architecture)
         maxNeuronsPerLayer = max(architecture)
